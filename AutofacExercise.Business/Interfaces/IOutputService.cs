@@ -1,6 +1,6 @@
-namespace AutofacExercise.Interfaces
+namespace AutofacExercise.Business.Interfaces
 {
-    internal interface IOutputService
+    public interface IOutputService
     {
         void PrintExit();
         void PrintInputPrompt();

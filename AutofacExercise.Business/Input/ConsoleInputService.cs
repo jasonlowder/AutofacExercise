@@ -1,15 +1,17 @@
 ﻿using System;
-using AutofacExercise.Interfaces;
+using AutofacExercise.Business.Interfaces;
 
-namespace AutofacExercise.Input
+namespace AutofacExercise.Business.Input
 {
-    internal class ConsoleInputService : IInputService
+    public class ConsoleInputService : IInputService
     {
         private string _input = "input-initializer";
 
         public string GetInput()
         {
             _input = Console.ReadLine();
+            if (!String.IsNullOrEmpty(_input))
+                _input = _input.Trim();
             return _input;
         }
 

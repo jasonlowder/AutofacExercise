@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{17423B78-21CF-4D31-9813-6CC7F2DFA808}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{9D65F115-3133-4C52-9759-97433DE34FA2}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AutofacExercise</RootNamespace>
-    <AssemblyName>AutofacExercise</AssemblyName>
+    <RootNamespace>AutofacExercise.Business</RootNamespace>
+    <AssemblyName>AutofacExercise.Business</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,11 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,21 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Startup\ArgumentsParser.cs" />
-    <Compile Include="Startup\Config.cs" />
-    <Compile Include="Startup\ContainerSetup.cs" />
-    <Compile Include="SimulationRunner.cs" />
+    <Compile Include="Input\ConsoleInputService.cs" />
+    <Compile Include="Interfaces\IInputService.cs" />
+    <Compile Include="Interfaces\IMessageService.cs" />
+    <Compile Include="Interfaces\IOutputService.cs" />
+    <Compile Include="Magic8BallSimulator.cs" />
+    <Compile Include="Messages\MessageService.cs" />
+    <Compile Include="Output\ConsoleOutputService.cs" />
+    <Compile Include="Output\FileOutputService.cs" />
+    <Compile Include="Output\PopupOutputService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AutofacExercise.Business\AutofacExercise.Business.csproj">
-      <Project>{9d65f115-3133-4c52-9759-97433de34fa2}</Project>
-      <Name>AutofacExercise.Business</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

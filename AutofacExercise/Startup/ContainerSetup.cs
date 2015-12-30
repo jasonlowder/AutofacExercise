@@ -1,11 +1,13 @@
 using System.IO;
 using Autofac;
-using AutofacExercise.Input;
-using AutofacExercise.Interfaces;
-using AutofacExercise.Messages;
-using AutofacExercise.Output;
+using AutofacExercise.Business;
+using AutofacExercise.Business.Input;
+using AutofacExercise.Business.Interfaces;
+using AutofacExercise.Business.Messages;
+using AutofacExercise.Business.Output;
+using AutofacExercise.Start;
 
-namespace AutofacExercise.Start
+namespace AutofacExercise.Startup
 {
     internal class ContainerSetup
     {

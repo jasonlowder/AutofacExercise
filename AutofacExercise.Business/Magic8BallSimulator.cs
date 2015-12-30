@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using AutofacExercise.Interfaces;
+using AutofacExercise.Business.Interfaces;
 
-namespace AutofacExercise
+namespace AutofacExercise.Business
 {
-    internal class Magic8BallSimulator
+    public class Magic8BallSimulator
     {
 
         // our "dependencies" are now interfaces

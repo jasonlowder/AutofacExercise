@@ -1,17 +1,19 @@
 ﻿using Autofac;
 using AutofacExercise.Start;
+using AutofacExercise.Startup;
+using AutofacExercise.Business;
 
 namespace AutofacExercise
 {
-    class SimulationRunner
+    internal class SimulationRunner
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var argumentsParser = new ArgumentsParser(args);
-            Config config = argumentsParser.GetConfig();
+            var config = argumentsParser.GetConfig();
 
             var containerSetup = new ContainerSetup();
-            IContainer container = containerSetup.BuildContainer(config);
+            var container = containerSetup.BuildContainer(config);
             container.Resolve<Magic8BallSimulator>().Run();
         }
     }

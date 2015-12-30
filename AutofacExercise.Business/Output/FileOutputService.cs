@@ -1,9 +1,9 @@
 using System.IO;
-using AutofacExercise.Interfaces;
+using AutofacExercise.Business.Interfaces;
 
-namespace AutofacExercise.Output
+namespace AutofacExercise.Business.Output
 {
-    internal class FileOutputService : IOutputService
+    public class FileOutputService : IOutputService
     {
         private readonly string _outputFilePath;
 

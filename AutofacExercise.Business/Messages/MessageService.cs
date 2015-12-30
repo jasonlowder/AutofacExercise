@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using AutofacExercise.Interfaces;
+using AutofacExercise.Business.Interfaces;
 
-namespace AutofacExercise.Messages
+namespace AutofacExercise.Business.Messages
 {
-    internal class MessageService : IMessageService
+    public class MessageService : IMessageService
     {
 
         public MessageService()

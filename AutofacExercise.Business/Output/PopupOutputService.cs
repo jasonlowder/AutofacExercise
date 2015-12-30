@@ -1,9 +1,9 @@
 using System.Windows.Forms;
-using AutofacExercise.Interfaces;
+using AutofacExercise.Business.Interfaces;
 
-namespace AutofacExercise.Output
+namespace AutofacExercise.Business.Output
 {
-    internal class PopupOutputService : IOutputService
+    public class PopupOutputService : IOutputService
     {
         public void PrintExit()
         {
