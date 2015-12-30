@@ -1,40 +1,62 @@
+using System.Collections.Generic;
 using AutofacExercise.Interfaces;
 
 namespace AutofacExercise
 {
     internal class Magic8BallSimulator
     {
+
         // our "dependencies" are now interfaces
         private readonly IMessageService _messageService;
         private readonly IInputService _inputService;
-        private readonly IOutputService _outputService;
+        private readonly IEnumerable<IOutputService> _outputServices;
 
         // we're now injecting Interfaces, this loosens our coupling to our "injected" dependencies
         public Magic8BallSimulator(IMessageService messageService, IInputService inputService,
-            IOutputService outputService)
+            IEnumerable<IOutputService> outputServices)
         {
             _messageService = messageService;
             _inputService = inputService;
-            _outputService = outputService;
+            _outputServices = outputServices;
         }
 
         public void Run()
         {
-            _outputService.PrintWelcome();
-            string message = string.Empty;
-
-            _outputService.PrintInputPrompt();
+            PrintWelcome();
+            PrintInputPrompt();
             _inputService.GetInput();
 
             while (!_inputService.ExitWasRequested())
             {
-                message = _messageService.GetMessage();
-                _outputService.PrintMessage(message);
-                _outputService.PrintInputPrompt();
+                var message = _messageService.GetMessage();
+
+                PrintMessage(message);
+                PrintInputPrompt();
                 _inputService.GetInput();
             }
 
-            _outputService.PrintExit();
+            PrintExit();
+        }
+
+        private void PrintWelcome()
+        {
+            foreach (var outputService in _outputServices)
+                outputService.PrintWelcome();
+        }
+        private void PrintInputPrompt()
+        {
+            foreach (var outputService in _outputServices)
+                outputService.PrintInputPrompt();
+        }
+        private void PrintMessage(string message)
+        {
+            foreach (var outputService in _outputServices)
+                outputService.PrintMessage(message);
+        }
+        private void PrintExit()
+        {
+            foreach (var outputService in _outputServices)
+                outputService.PrintExit();
         }
     }
 }

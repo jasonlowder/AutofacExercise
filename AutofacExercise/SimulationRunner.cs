@@ -1,7 +1,5 @@
-﻿using System.IO;
-using AutofacExercise.Input;
-using AutofacExercise.Messages;
-using AutofacExercise.Output;
+﻿using Autofac;
+using AutofacExercise.Start;
 
 namespace AutofacExercise
 {
@@ -9,15 +7,12 @@ namespace AutofacExercise
     {
         static void Main(string[] args)
         {
-            // output file for new output-service
-            var outputFilePath = Path.Combine(Path.GetTempPath(), "magic8BallOutput.txt");
+            var argumentsParser = new ArgumentsParser(args);
+            Config config = argumentsParser.GetConfig();
 
-            var simulator = new Magic8BallSimulator(
-                new MessageService(),
-                new ConsoleInputService(),
-                new MultipleOutputService(outputFilePath) // new odd output class
-            );
-            simulator.Run();
+            var containerSetup = new ContainerSetup();
+            IContainer container = containerSetup.BuildContainer(config);
+            container.Resolve<Magic8BallSimulator>().Run();
         }
     }
 }
