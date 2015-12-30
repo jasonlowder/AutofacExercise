@@ -1,70 +1,46 @@
-﻿using System;
-using AutofacExercise.Business.Input;
+﻿using AutofacExercise.Business.Input;
 using AutofacExercise.UnitTests.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace AutofacExercise.UnitTests.Input
 {
-    [TestClass]
+    [TestFixture]
     public class ConsoleInputServiceTests
     {
         private readonly ConsoleInputMock _consoleMock = new ConsoleInputMock();
+        private ConsoleInputService _service;
 
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
-
-        [TestMethod]
+        [Test]
         public void ConsoleInputIsReturnedByGetInput()
         {
             const string testInput = "This is test input.";
-            _consoleMock.GivenConsoleInputOf(testInput);
-
-            var service = new ConsoleInputService();
-            var input = service.GetInput();
-            _consoleMock.CloseConsoleInput();
+            var input = MakeRequest(testInput);
 
             Assert.AreEqual(testInput, input);
         }
 
-        [TestMethod]
-        public void ExitIsRequestedOnNewlineInput()
+        [Test]
+        [TestCase("\r\n")]
+        [TestCase("\r")]
+        [TestCase("\n")]
+        [TestCase(" ")]
+        [TestCase("")]
+        public void ExitIsRequestedOnValidInput(string testInput)
         {
-            _consoleMock.GivenConsoleInputOf(Environment.NewLine);
+            MakeRequest(testInput);
 
-            var service = new ConsoleInputService();
-            service.GetInput();
-            _consoleMock.CloseConsoleInput();
-
-            var exitWasRequested = service.ExitWasRequested();
+            var exitWasRequested = _service.ExitWasRequested();
             Assert.IsTrue(exitWasRequested);
         }
 
-        [TestMethod]
-        public void ExitIsRequestedOnEmptyInput()
+        private string MakeRequest(string testInput)
         {
-            _consoleMock.GivenConsoleInputOf(String.Empty);
+            _consoleMock.GivenConsoleInputOf(testInput);
 
-            var service = new ConsoleInputService();
-            service.GetInput();
+            _service = new ConsoleInputService();
+            var input = _service.GetInput();
             _consoleMock.CloseConsoleInput();
-
-            var exitWasRequested = service.ExitWasRequested();
-            Assert.IsTrue(exitWasRequested);
-        }
-
-        [TestMethod]
-        public void ExitIsRequestedOnWhitespaceInput()
-        {
-            _consoleMock.GivenConsoleInputOf(" ");
-
-            var service = new ConsoleInputService();
-            service.GetInput();
-            _consoleMock.CloseConsoleInput();
-
-            var exitWasRequested = service.ExitWasRequested();
-            Assert.IsTrue(exitWasRequested);
+            return input;
         }
     }
 }
