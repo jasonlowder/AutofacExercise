@@ -1,8 +1,9 @@
 ﻿using System;
+using AutofacExercise.Interfaces;
 
-namespace AutofacExercise
+namespace AutofacExercise.Output
 {
-    internal class ConsoleOutputService
+    internal class ConsoleOutputService : IOutputService
     {
         public void PrintMessage(string message)
         {

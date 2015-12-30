@@ -1,14 +1,21 @@
-﻿namespace AutofacExercise
+﻿using System.IO;
+using AutofacExercise.Input;
+using AutofacExercise.Messages;
+using AutofacExercise.Output;
+
+namespace AutofacExercise
 {
     class SimulationRunner
     {
         static void Main(string[] args)
         {
-            // watch me now, I'm injecting dependent classes
-            Magic8BallSimulator simulator = new Magic8BallSimulator(
+            // output file for new output-service
+            var outputFilePath = Path.Combine(Path.GetTempPath(), "magic8BallOutput.txt");
+
+            var simulator = new Magic8BallSimulator(
                 new MessageService(),
                 new ConsoleInputService(),
-                new ConsoleOutputService()
+                new MultipleOutputService(outputFilePath) // new odd output class
             );
             simulator.Run();
         }

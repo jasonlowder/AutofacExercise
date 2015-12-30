@@ -1,8 +1,9 @@
 ﻿using System;
+using AutofacExercise.Interfaces;
 
-namespace AutofacExercise
+namespace AutofacExercise.Input
 {
-    internal class ConsoleInputService
+    internal class ConsoleInputService : IInputService
     {
         private string _input = "input-initializer";
 
