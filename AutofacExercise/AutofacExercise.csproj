@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleInputService.cs" />
+    <Compile Include="ConsoleOutputService.cs" />
     <Compile Include="Magic8BallSimulator.cs" />
+    <Compile Include="MessageService.cs" />
     <Compile Include="SimulationRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
